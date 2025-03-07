@@ -22,7 +22,7 @@ require 'menu.php';
 ?>
 
 <div class="main-content">
-    <h1>Manage Product Stock</h1>
+    <h1>Stock -> Product Assemblies</h1>
     Note! this will remove components from the component stock based on the assembly contents.<br>
     Also this will not work if component stock levels are not available for assembly.<br><br>
     <!-- Add Product Stock -->

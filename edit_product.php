@@ -63,7 +63,7 @@ require 'menu.php';
 ?>
 
 <div class="main-content">
-    <h1>Edit Product</h1>
+    <h1>Manage Product Assemblies</h1>
     
     <!-- Create Product -->
     <div class="widget">

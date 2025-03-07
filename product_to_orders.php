@@ -79,7 +79,7 @@ require 'menu.php';
 ?>
 
 <div class="main-content">
-    <h1>Manage Orders</h1>
+    <h1>Orders</h1>
 
     <!-- Create New Order -->
     <div class="widget">

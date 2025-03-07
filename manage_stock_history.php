@@ -48,7 +48,7 @@ require 'menu.php';
 
 
     <div class="main-content">
-        <h1>Manage Stock History</h1>
+        <h1>Add/Remove Stock</h1>
 
         <!-- Add Stock History Form -->
         <div class="widget">
