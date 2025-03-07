@@ -1,7 +1,7 @@
 # simpleStock
 ## a small PHP/MySQL inventory management project
 This is built to be able to run on a small web server or something like a local XAMPP installation. Very little overhead, as long as it answers on HTTP and has PHP and MySQL installed the service should work. No tail of libraries or dependencies to have to mess around with.
-
+!(https://github.com/wileecoyoti/simpleStock/blob/main/Screenshot1.png)
 
 ### Basid Setup
 Should be able to establish a database using the SQL query in databaseSQL.txt.
