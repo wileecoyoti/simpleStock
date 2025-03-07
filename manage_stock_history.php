@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['component_id']) && is
     if ($add_stock_history_result) {
         echo "complete";
         header("Location: manage_stock_history.php");
+        echo "Completed";
         exit();
     } else {
         $error_message = "Failed to add stock history entry.";
@@ -33,6 +34,7 @@ if (isset($_GET['delete_id'])) {
 
     if ($delete_result) {
         header("Location: manage_stock_history.php");
+        echo "Completed";
         exit();
     } else {
         $error_message = "Failed to delete stock history entry.";

@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_component'])) 
     // Update component in the database
     update_component($component_id, $name, $stock);
     header("Location: manage_components.php"); // Redirect to component management page
+        echo "Completed";
     exit();
 }
 

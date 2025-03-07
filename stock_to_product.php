@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_stock'])) {
     $quantity = $_POST['quantity'];
     add_product_stock($product_id, $quantity); // Function to update product stock and deduct components
     header("Location: stock_to_product.php");
+        echo "Completed";
     exit();
 }
 

@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_product'])) {
     if (!empty($product_name)) {
         add_product($product_name, $stock);
         header("Location: edit_product.php");
+        echo "Completed";
         exit();
     }
 }
@@ -21,6 +22,7 @@ if (isset($_GET['delete_id'])) {
     $product_id = intval($_GET['delete_id']);
     delete_product($product_id);
     header("Location: edit_product.php");
+        echo "Completed";
     exit();
 }
 
@@ -38,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_stock'])) {
     $new_stock = $_POST['stock'];
     update_product_stock($product_id, $new_stock);
     header("Location: edit_product.php?id=$product_id");
+        echo "Completed";
     exit();
 }
 
@@ -47,6 +50,7 @@ if (isset($_GET['remove_bom_id']) && isset($_GET['product_id'])) {
     
     remove_component_from_bom($product_id, $component_id);
     header("Location: edit_product.php?id=$product_id");
+        echo "Completed";
     exit();
 }
 

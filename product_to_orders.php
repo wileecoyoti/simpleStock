@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_date_shipped']
 
     update_order_date_shipped($order_id, $date_shipped);
     header("Location: product_to_orders.php?order_id=$order_id");
+        echo "Completed";
     exit();
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_date_installed'])) {
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_date_installed
 
     update_order_date_installed($order_id, $date_installed);
     header("Location: product_to_orders.php?order_id=$order_id");
+        echo "Completed";
     exit();
 }
 
@@ -47,9 +49,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_order'])) {
 
     if (add_product_to_order($order_id, $product_id, $quantity, $serial_range)) {
         header("Location: product_to_orders.php?order_id=$order_id");
+        echo "Completed";
         exit();
     }
 }
+
+// Handle removing a product from an order
+if (isset($_GET['remove_item']) && isset($_GET['order_id']) && isset($_GET['product_id'])) {
+    $order_id = intval($_GET['order_id']);
+    $product_id = intval($_GET['product_id']);
+
+    if (remove_order_item($order_id, $product_id)) {
+        header("Location: product_to_orders.php?order_id=$order_id");
+        echo "Completed";
+        exit();
+    }
+}
+
+
 
 // Handle updating the date installed
 
@@ -72,7 +89,7 @@ require 'menu.php';
             <input type="text" name="customer_name" required>
 
             <label for="customer_address">Customer Address:</label>
-            <textarea name="customer_address" required></textarea>
+            <textarea name="customer_address" placeholder="(optional)"></textarea>
 
             <button type="submit" name="create_order">Create Order</button>
         </form>
@@ -135,16 +152,21 @@ require 'menu.php';
 
         <!-- Order Items -->
         <h4>Order Items</h4>
-        <ul>
-            <?php foreach ($order_items as $item): ?>
-                <li>
-                    <?php echo $item['name'] . " (Quantity: " . $item['quantity'] . ")"; ?>
-                    <?php if (!empty($item['serial_range'])): ?>
-                        <br><small>Serial Range: <?php echo $item['serial_range']; ?></small>
-                    <?php endif; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+            <ul>
+                <?php foreach ($order_items as $item): ?>
+                    <li>
+                        <?php echo $item['name'] . " (Quantity: " . $item['quantity'] . ")"; ?>
+                        <?php if (!empty($item['serial_range'])): ?>
+                            <br><small>Serial Range: <?php echo $item['serial_range']; ?></small>
+                        <?php endif; ?>
+                        <a href="product_to_orders.php?order_id=<?php echo $current_order['id']; ?>&product_id=<?php echo $item['product_id']; ?>&remove_item=1" 
+                           onclick="return confirm('Are you sure you want to remove this item?');">
+                            [Remove]
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+
     </div>
     <?php endif; ?>
 </div>

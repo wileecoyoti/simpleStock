@@ -456,6 +456,36 @@ function update_order_date_installed($order_id, $date_installed) {
     return $stmt->execute();
 }
 
+//-----------------------------------//
+
+function remove_order_item($order_id, $product_id) {
+    global $conn;
+
+    // Get the quantity of the product in the order before deleting
+    $stmt = $conn->prepare("SELECT quantity FROM order_items WHERE order_id = ? AND product_id = ?");
+    $stmt->bind_param("ii", $order_id, $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $item = $result->fetch_assoc();
+
+    if (!$item) {
+        return false; // If no item found, exit early
+    }
+
+    $quantity = $item['quantity'];
+
+    // Remove the item from the order
+    $stmt = $conn->prepare("DELETE FROM order_items WHERE order_id = ? AND product_id = ?");
+    $stmt->bind_param("ii", $order_id, $product_id);
+    $stmt->execute();
+
+    // Add the quantity back to product stock
+    $stmt = $conn->prepare("UPDATE products SET stock = stock + ? WHERE id = ?");
+    $stmt->bind_param("ii", $quantity, $product_id);
+    return $stmt->execute();
+}
+
+
 
 ?>
 

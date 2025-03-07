@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_component'])) {
     if (!empty($name)) {
         add_component($name, $stock);
         header("Location: manage_components.php"); // Refresh the page
+        echo "Completed";
         exit();
     }
 }
@@ -24,6 +25,7 @@ if (isset($_GET['delete_id'])) {
     $component_id = intval($_GET['delete_id']);
     delete_component($component_id);
     header("Location: manage_components.php"); // Refresh the page
+        echo "Completed";
     exit();
 }
 
