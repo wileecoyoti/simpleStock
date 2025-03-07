@@ -14,5 +14,7 @@
         <a style="visibility:hidden;"></a> 
         <a href="manage_components.php">Manage Components</a>
         <a href="edit_product.php">Manage Product Assemblies</a>
+        <a style="visibility:hidden;"></a> 
+        <a href="register.php">Manage Users</a>
         <a href="logout.php">Logout</a>
     </div>
