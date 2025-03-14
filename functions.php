@@ -218,7 +218,7 @@ function delete_stock_history($id) {
 function get_component_name_by_id($component_id) {
     global $conn;
     $stmt = $conn->prepare("SELECT name FROM components WHERE id = $component_id");
-    $stmt->bind_param("i", $component_id);
+    //$stmt->bind_param("i", $component_id);
     $stmt->execute();
     $result = $stmt->get_result()->fetch_assoc();
     return $result['name'];

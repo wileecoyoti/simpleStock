@@ -18,7 +18,7 @@ require 'menu.php';
     <div class="widget">
         
         <table>
-            <tr><th>Product Stock Levels</th><th>Stock</th></tr>
+            <tr><th>Product Stock Levels</th><th style="width:150px;">Stock</th></tr>
             <?php foreach ($products as $p): ?>
                 <tr><td><?= $p['name'] ?></td><td><?= $p['stock'] ?></td></tr>
             <?php endforeach; ?>
@@ -29,7 +29,7 @@ require 'menu.php';
     <div class="widget">
         
         <table>
-            <tr><th>Component Stock Levels</th><th>Stock</th></tr>
+            <tr><th>Component Stock Levels</th><th style="width:150px;">Stock</th></tr>
             <?php foreach ($components as $c): ?>
                 <tr><td><?= $c['name'] ?></td><td><?= $c['stock'] ?></td></tr>
             <?php endforeach; ?>
