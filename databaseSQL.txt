@@ -36,7 +36,8 @@ CREATE TABLE `orders` (
   `customer_address` text COLLATE utf8mb4_general_ci,
   `date_ordered` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `date_shipped` timestamp NULL DEFAULT NULL,
-  `date_installed` timestamp NULL DEFAULT NULL
+  `date_installed` timestamp NULL DEFAULT NULL,
+  `notes` TEXT NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
