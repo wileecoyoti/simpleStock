@@ -486,6 +486,15 @@ function remove_order_item($order_id, $product_id) {
 }
 
 
+//---------------------//
+
+function update_order_notes($order_id, $notes) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE orders SET notes = ? WHERE id = ?");
+    $stmt->bind_param("si", $notes, $order_id);
+    return $stmt->execute();
+}
+
 
 ?>
 

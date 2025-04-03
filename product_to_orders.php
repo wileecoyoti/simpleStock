@@ -66,7 +66,14 @@ if (isset($_GET['remove_item']) && isset($_GET['order_id']) && isset($_GET['prod
     }
 }
 
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_notes'])) {
+    $order_id = $_POST['order_id'];
+    $notes = trim($_POST['notes']);
+    update_order_notes($order_id, $notes);
+    header("Location: product_to_orders.php?order_id=$order_id");
+    echo "Completed";
+    exit();
+}
 
 // Handle updating the date installed
 
@@ -115,6 +122,14 @@ require 'menu.php';
         <p><strong>Customer:</strong> <?php echo $current_order['customer_name']; ?></p>
         <p><strong>Address:</strong> <?php echo $current_order['customer_address']; ?></p>
         <p><strong>Date Ordered:</strong> <?php echo $current_order['date_ordered']; ?></p>
+
+<h4>Order Notes</h4>
+<form method="POST">
+    <input type="hidden" name="order_id" value="<?php echo $current_order['id']; ?>">
+    <textarea name="notes" rows="4" cols="50" placeholder="Add any notes about this order..."><?php echo htmlspecialchars($current_order['notes'] ?? ''); ?></textarea>
+    <br>
+    <button type="submit" name="update_notes">Update Notes</button>
+</form>
 
         <!-- Update Date Shipped -->
         <h4>Update Date Shipped</h4>
